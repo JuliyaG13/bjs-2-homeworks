@@ -18,20 +18,20 @@ function solveEquation(a, b, c) {
 	return arr;
 }
 
+"use strict";
+
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
 
-	let r = percent / 100 / 12;
-	let A = amount - contribution;
+	let monthlyRate = (percent / 100) / 12;
 
-	if (A <= 0) {
-		return 'Сумма кредита должна быть больше нуля.';
+	let bodyCredit = amount - contribution;
+
+	if (bodyCredit <= 0) {
+		throw new Error("Сумма кредита должна быть больше нуля.");
 	}
 
-	let n = countMonths;
+	let monthlyPayment = bodyCredit * (monthlyRate + (monthlyRate / (Math.pow(1 + monthlyRate, countMonths) - 1)));
 
-	const monthlyPayment = (A * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-
-	const totalSum = (monthlyPayment * n).toFixed(2);
-
-	return totalSum;
+	let totalAmount = monthlyPayment * countMonths;
+	return Math.round(totalAmount * 100) / 100;
 }
