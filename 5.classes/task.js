@@ -25,3 +25,21 @@ class PrintEditionItem {
 		this.state = Math.min(this.state * 1.5, 100);
 	}
 }
+
+
+class PrintEditionItem {
+    constructor(name, releaseDate, pagesCount) {
+        this.name = name;             // Название издания
+        this.releaseDate = releaseDate; // Дата выпуска
+        this.pagesCount = pagesCount;  // Количество страниц
+        this._state = 100;            // Состояние (по умолчанию 100)
+    }
+
+    get state() {
+        return this._state;
+    }
+
+    set state(newState) {
+        this._state = (newState < 0) ? 0 : (newState > 100 ? 100 : newState);
+    }
+}
